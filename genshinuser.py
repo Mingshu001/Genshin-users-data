@@ -1,7 +1,3 @@
-print("Hello, Genshin Impact user!")
-print("Welcome to the Genshin Impact community!")
-
-# Plot Genshin Impact 90-day RPD trend (2021-2024)
 import matplotlib.pyplot as plt
 
 years = [2021, 2022, 2023, 2024]
