@@ -1,6 +1,9 @@
+print("Hello, Genshin Impact user!")
+print("Welcome to the Genshin Impact community!")
+
+# Plot Genshin Impact 90-day RPD trend (2021-2024)
 import matplotlib.pyplot as plt
 
-# Simulated RPD (Revenue Per Download) data for Genshin Impact (2021-2024)
 years = [2021, 2022, 2023, 2024]
 RPD = [35, 45, 62, 58]  # USD, based on article trend
 
