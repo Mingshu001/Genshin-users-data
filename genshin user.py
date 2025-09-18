@@ -1,0 +1,1 @@
+print("Hello, Genshin Impact user!")
