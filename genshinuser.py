@@ -34,20 +34,26 @@ df = pd.DataFrame(data, columns=["Month", "Monthly Active Players"])
 df["Month"] = pd.to_datetime(df["Month"], format="%B %Y")
 df = df.sort_values("Month")
 
-fig = go.Figure()
-fig.add_trace(go.Scatter(
-	x=df["Month"],
-	y=df["Monthly Active Players"],
-	mode="lines+markers",
-	line=dict(color="royalblue", width=3),
-	marker=dict(size=8),
-	name="Monthly Active Players"
-))
-fig.update_layout(
-	title="Genshin Impact Monthly Active Players (2020-2024)",
-	xaxis_title="Month",
-	yaxis_title="Players",
-	hovermode="x unified",
-	template="plotly_white"
-)
-fig.show()
+
+# Animated chart using matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots(figsize=(10, 6))
+x = df["Month"]
+y = df["Monthly Active Players"]
+line, = ax.plot([], [], 'o-', color='royalblue')
+ax.set_xlim(x.min(), x.max())
+ax.set_ylim(0, y.max() * 1.1)
+ax.set_title("Genshin Impact Monthly Active Players (2020-2024)")
+ax.set_xlabel("Month")
+ax.set_ylabel("Players")
+plt.xticks(rotation=45)
+
+def animate(i):
+	line.set_data(x[:i+1], y[:i+1])
+	return line,
+
+ani = animation.FuncAnimation(fig, animate, frames=len(x), interval=300, blit=True, repeat=False)
+plt.tight_layout()
+plt.show()
